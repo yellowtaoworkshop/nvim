@@ -2,9 +2,9 @@
 require('plugins')
 
 -- setup the pkgso
-require('pkginit')
+require('pkg-init')
 
 -- ui
-require('uiinit')
+require('ui-init')
 
 

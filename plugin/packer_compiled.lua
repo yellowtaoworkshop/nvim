@@ -74,6 +74,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["coc.nvim"] = {
+    loaded = true,
+    path = "/home/arch/.local/share/nvim/site/pack/packer/start/coc.nvim",
+    url = "https://github.com/neoclide/coc.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/arch/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -86,6 +91,11 @@ _G.packer_plugins = {
     only_cond = false,
     path = "/home/arch/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim",
     url = "https://github.com/iamcco/markdown-preview.nvim"
+  },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/home/arch/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/EdenEast/nightfox.nvim"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -122,7 +132,7 @@ pcall(vim.api.nvim_create_user_command, 'MarkdownPreview', function(cmdargs)
           require('packer.load')({'markdown-preview.nvim'}, { cmd = 'MarkdownPreview', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'markdown-preview.nvim'}, { cmd = 'MarkdownPreview' }, _G.packer_plugins)
+          require('packer.load')({'markdown-preview.nvim'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('MarkdownPreview ', 'cmdline')
       end})
 time([[Defining lazy-load commands]], false)

@@ -11,6 +11,7 @@ return require('packer').startup(function(use)
 	-- lsp config
 	use 'neovim/nvim-lspconfig'
 
+	use 'tamago324/nlsp-settings.nvim'
   -- -- Simple plugins can be specified as strings
   -- use 'rstacruz/vim-closer'
 
@@ -52,11 +53,23 @@ return require('packer').startup(function(use)
   -- tokyonight colorscheme
   use {'folke/tokyonight.nvim'}
 
+	use "EdenEast/nightfox.nvim"
+
   use {'kyazdani42/nvim-web-devicons'}
   -- status line
   use {
 	  'nvim-lualine/lualine.nvim',
 	  requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
+
+	-- completion 
+	use {'neoclide/coc.nvim', branch = 'release'}
+
+	-- EasyMotion
+
+	use {
+		'phaazon/hop.nvim',
+		branch = 'v2', -- optional but strongly recommended
+	}
 
   end)
