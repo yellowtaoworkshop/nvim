@@ -1,4 +1,3 @@
-
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
 -- Only required if you have packer configured as `opt`
@@ -50,10 +49,15 @@ return require('packer').startup(function(use)
   -- Post-install/update hook with neovim command
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
+	use 'marko-cerovac/material.nvim'
+
+
   -- tokyonight colorscheme
   use {'folke/tokyonight.nvim'}
 
 	use "EdenEast/nightfox.nvim"
+
+	use "rakr/vim-one"
 
   use {'kyazdani42/nvim-web-devicons'}
   -- status line
@@ -62,8 +66,14 @@ return require('packer').startup(function(use)
 	  requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
+	use {
+		'nvim-tree/nvim-tree.lua'
+	}
+
+	use 'glepnir/zephyr-nvim' 
+
 	-- completion 
-	use {'neoclide/coc.nvim', branch = 'release'}
+	-- use {'neoclide/coc.nvim', branch = 'release'}
 
 	-- EasyMotion
 
@@ -72,4 +82,17 @@ return require('packer').startup(function(use)
 		branch = 'v2', -- optional but strongly recommended
 	}
 
-  end)
+	use {'hrsh7th/nvim-cmp'}
+	use {'hrsh7th/cmp-cmdline'}
+	use {'hrsh7th/cmp-path'}
+	use {'hrsh7th/cmp-buffer'}
+	use {'hrsh7th/cmp-nvim-lsp'}
+	use {'delphinus/cmp-ctags'}
+	use {'octaltree/cmp-look'}
+	use {'uga-rosa/cmp-dictionary'}
+	
+	
+	use "nvim-orgmode/orgmode"
+
+
+end)
