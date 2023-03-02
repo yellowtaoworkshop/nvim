@@ -1,9 +1,11 @@
 -- enable the packer cfg
 require('plugins')
 
--- setup the pkgso
-require('pkg-init')
+require ('init-packages')
+
+-- better-default 
+require('init-better-default')
 
 -- ui
-require('ui-init')
+require('init-ui')
 
