@@ -53,7 +53,7 @@ require('nvim-treesitter.configs').setup {
     -- code block highlights that do not have ts grammar
     additional_vim_regex_highlighting = {'org'},
   },
-  ensure_installed = {'org'}, -- Or run :TSUpdate org
+  -- ensure_installed = {'org'}, -- Or run :TSUpdate org
 }
 
 require('orgmode').setup({
@@ -73,8 +73,8 @@ cmp.setup({
 })
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-require('lspconfig')['svlangserver'].setup {
-  capabilities = capabilities
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  require('lspconfig')['svls'].setup {
+    capabilities = capabilities
 }
 

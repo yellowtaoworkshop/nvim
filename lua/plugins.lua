@@ -49,6 +49,9 @@ return require('packer').startup(function(use)
 
 	use 'marko-cerovac/material.nvim'
 
+  use 'junegunn/vim-easy-align'
+
+  use 'tpope/vim-abolish'
 
   -- tokyonight colorscheme
   use {'folke/tokyonight.nvim'}
@@ -69,6 +72,8 @@ return require('packer').startup(function(use)
 	}
 
 	use 'glepnir/zephyr-nvim' 
+
+  use 'NLKNguyen/papercolor-theme'
 
 	-- completion 
 	-- use {'neoclide/coc.nvim', branch = 'release'}
@@ -92,6 +97,7 @@ return require('packer').startup(function(use)
 	
 	use "nvim-orgmode/orgmode"
 
+  use 'ngemily/vim-vp4'
 
 end)
 
