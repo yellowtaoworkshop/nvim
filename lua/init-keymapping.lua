@@ -8,4 +8,4 @@ end
 
 map('', '<leader>cpf', ':let @+= expand("%:p")<CR>')
 map('', '<leader>b'  , ':ls<CR>:b')
-map('', '<C-R>-]'    , ':ts <C-R><C-W><CR>')
+map('', '<C-]>'    , ':ts <C-R><C-W><CR>')
