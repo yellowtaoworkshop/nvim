@@ -15,7 +15,7 @@ return {
   -- motion
   {
     'phaazon/hop.nvim',
-    --event = "VeryLazy",
+    event = "VeryLazy",
     opts = {},
   },
 
@@ -33,9 +33,9 @@ return {
 
   -- auto-pair
   {
-    'windwp/nvim-autopairs',
+    'yellowtaoworkshop/nvim-autopairs',
     event = "InsertEnter",
-    opts = {}
+    opts = {},
   },
 
   -- buffer managerment
@@ -45,14 +45,14 @@ return {
       'nvim-lua/plenary.nvim'
     },
     lazy = "VeryLazy",
-    keys = {
-      {
-        "<leader>bl", 
-        function()
-          require('buffer_manager.ui').toggle_quick_menu()
-        end, 
-        desc = "buffer managerment"}
-    },
+    --keys = {
+    --  {
+    --    "<leader>bl", 
+    --    function()
+    --      require('buffer_manager.ui').toggle_quick_menu()
+    --    end, 
+    --    desc = "buffer managerment"}
+    --},
     opts = {
     },
   },
@@ -65,15 +65,15 @@ return {
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     },
-    keys = {
-      {
-        "<leader>?",
-        function()
-          require("which-key").show({ global = false })
-        end,
-        desc = "Buffer Local Keymaps (which-key)",
-      },
-    },
+    --keys = {
+    --  {
+    --    "<leader>?",
+    --    function()
+    --      require("which-key").show({ global = false })
+    --    end,
+    --    desc = "Buffer Local Keymaps (which-key)",
+    --  },
+    --},
   }
 
 }

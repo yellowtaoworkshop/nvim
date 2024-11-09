@@ -4,3 +4,6 @@ require("config.options")
 
 -- Load the lazy and plugins
 require("config.lazy")
+
+require("config.keybinding")
+
