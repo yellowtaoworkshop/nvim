@@ -14,7 +14,7 @@ return {
 
   -- motion
   {
-    'phaazon/hop.nvim',
+    'folke/flash.nvim',
     event = "VeryLazy",
     opts = {},
   },
