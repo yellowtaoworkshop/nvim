@@ -18,6 +18,22 @@ wk.add ({
       end, 
       desc = "List all opened buffers"
     },
+    {
+      "<leader>bn",
+      function()
+        require('buffer_manager.ui').nav_next()
+      end, 
+      desc = "Move to next buffer"
+        
+    },
+    {
+      "<leader>bp",
+      function()
+        require('buffer_manager.ui').nav_prev()
+      end, 
+      desc = "Move to previuos buffer"
+        
+    }
   },
 
   {
@@ -31,4 +47,16 @@ wk.add ({
       mode = { "n", "x", "o"}
     },
   },
+
+  -- Nvim tree
+  {
+    { "<leader>t", group = "Nvim Tree", desc = "Nvim tree"},
+    {
+      "<leader>to",
+      function()
+        vim.cmd("NvimTreeOpen")
+      end,
+      desc = "Open the Nvim Tree"
+    }
+  }
 })

@@ -131,6 +131,22 @@ return {
     end
   }, 
 
+  -- bufferline
+  {
+    'akinsho/bufferline.nvim', 
+    version = "*", 
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    opts = {
+      options = {
+        numbers = "ordinal",
+        separator_style = "slant",
+        indicator = {
+          icon = "🐝",
+          style = "icon"
+        }
+      }
+    }
+  }
 }
 
 
