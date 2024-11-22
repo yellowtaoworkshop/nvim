@@ -22,12 +22,12 @@ return {
     event = 'VimEnter',
     opts = function()
       local logo = [[
-         ░██████╗░░█████╗░██╗░░░██╗██╗███╗░░██╗     ❤   
-         ██╔════╝░██╔══██╗██║░░░██║██║████╗░██║       ❤ 
-         ██║░░██╗░███████║╚██╗░██╔╝██║██╔██╗██║    😘   
-         ██║░░╚██╗██╔══██║░╚████╔╝░██║██║╚████║ 🐝      
-      😍 ╚██████╔╝██║░░██║░░╚██╔╝░░██║██║░╚███║         
-        ░ ╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝╚═╝░░╚══╝         
+         ░██████╗░░█████╗░██╗░░░██╗██╗███╗░░██╗     ❤    
+         ██╔════╝░██╔══██╗██║░░░██║██║████╗░██║       ❤  
+         ██║░░██╗░███████║╚██╗░██╔╝██║██╔██╗██║    😘    
+         ██║░░╚██╗██╔══██║░╚████╔╝░██║██║╚████║ 🐝       
+      😍 ██████╔╝██║░░██║░░╚██╔╝░░██║██║░╚███║           
+        ░ ╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝╚═╝░░╚══╝          
       ]]
 
 
@@ -123,7 +123,7 @@ return {
       hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 
       local opts = { 
-        indent =  { highlight = highlight, char = "|" }, 
+        --indent =  { highlight = highlight, char = "|" }, 
         scope  =  { enabled   = true                  },
         exclude = { filetypes   = {"dashboard"}       }
       }
@@ -146,7 +146,84 @@ return {
         }
       }
     }
-  }
+  },
+
+  -- ufo
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = 'kevinhwang91/promise-async',
+    main = "ufo",
+    opts = function()
+      vim.o.foldcolumn     = '1' -- '0' is not bad
+      vim.o.foldlevel      = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable     = true
+
+      local handler = function(virtText, lnum, endLnum, width, truncate)
+        local newVirtText = {}
+        local suffix = ('⤸ %d '):format(endLnum - lnum)
+        local sufWidth = vim.fn.strdisplaywidth(suffix)
+        local targetWidth = width - sufWidth
+        local curWidth = 0
+        for _, chunk in ipairs(virtText) do
+          local chunkText = chunk[1]
+          local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+          if targetWidth > curWidth + chunkWidth then
+            table.insert(newVirtText, chunk)
+          else
+            chunkText = truncate(chunkText, targetWidth - curWidth)
+            local hlGroup = chunk[2]
+            table.insert(newVirtText, {chunkText, hlGroup})
+            chunkWidth = vim.fn.strdisplaywidth(chunkText)
+            -- str width returned from truncate() may less than 2nd argument, need padding
+            if curWidth + chunkWidth < targetWidth then
+              suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+            end
+            break
+          end
+          curWidth = curWidth + chunkWidth
+        end
+        table.insert(newVirtText, {suffix, 'MoreMsg'})
+        return newVirtText
+      end
+
+      return {
+        fold_virt_text_handler = handler
+      }
+    end
+  },
+
+  -- statuscol 
+  {
+    "luukvbaal/statuscol.nvim",
+    opts = function()
+      local builtin = require("statuscol.builtin")
+      return {
+        relculright = true,
+        segments = {
+          { text = { 
+              function(args) 
+                -- args.fold.open = "📂"
+                -- args.fold.close = "📁"
+                local str = builtin.foldfunc(args)
+                return str
+              end
+            },
+            click = "v:lua.ScFa" 
+          },
+          {
+            sign = { namespace = { "diagnostic/signs" }, maxwidth = 2, auto = true },
+            click = "v:lua.ScSa"
+          },
+          { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
+          {
+            sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
+            click = "v:lua.ScSa"
+          },
+        }
+      }
+    end
+   },
 }
 
 
