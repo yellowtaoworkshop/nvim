@@ -123,7 +123,8 @@ return {
       hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 
       local opts = { 
-        --indent =  { highlight = highlight, char = "|" }, 
+        indent =  { highlight = highlight, char = "│" }, 
+        --indent =  { char = "│" }, 
         scope  =  { enabled   = true                  },
         exclude = { filetypes   = {"dashboard"}       }
       }
@@ -161,7 +162,7 @@ return {
 
       local handler = function(virtText, lnum, endLnum, width, truncate)
         local newVirtText = {}
-        local suffix = ('⤸ %d '):format(endLnum - lnum)
+        local suffix = (' 🢱 %d '):format(endLnum - lnum)
         local sufWidth = vim.fn.strdisplaywidth(suffix)
         local targetWidth = width - sufWidth
         local curWidth = 0
@@ -203,8 +204,9 @@ return {
         segments = {
           { text = { 
               function(args) 
-                -- args.fold.open = "📂"
-                -- args.fold.close = "📁"
+                args.fold.open  = "〉"
+                args.fold.close = "⌵"
+                args.fold.spe   =" "
                 local str = builtin.foldfunc(args)
                 return str
               end
