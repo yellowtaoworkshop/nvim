@@ -7,3 +7,4 @@ require("config.lazy")
 
 require("config.keybinding")
 
+
