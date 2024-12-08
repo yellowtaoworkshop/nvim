@@ -48,6 +48,7 @@ return {
       require'lspconfig'.verible.setup {
         on_attach = on_attach,
         flags = lsp_flags,
+        cmd = {"verible-verilog-ls",  "--rules=+line-length=length:160,-no-tabs,-no-trailing-spaces"},
         root_dir = function() return vim.uv.cwd() end
       }
     end
