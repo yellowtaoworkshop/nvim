@@ -26,10 +26,9 @@ return {
          ██╔════╝░██╔══██╗██║░░░██║██║████╗░██║       ❤  
          ██║░░██╗░███████║╚██╗░██╔╝██║██╔██╗██║    😘    
          ██║░░╚██╗██╔══██║░╚████╔╝░██║██║╚████║ 🐝       
-      😍 ██████╔╝██║░░██║░░╚██╔╝░░██║██║░╚███║           
+      😍  ██████╔╝██║░░██║░░╚██╔╝░░██║██║░╚███║          
         ░ ╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝╚═╝░░╚══╝          
       ]]
-
 
       logo = string.rep("\n", 8) .. logo .. "\n\n"
 
@@ -204,9 +203,9 @@ return {
         segments = {
           { text = { 
               function(args) 
-                args.fold.open  = "〉"
-                args.fold.close = "⌵"
-                args.fold.spe   =" "
+                args.fold.close  = "+"
+                args.fold.open = "-"
+                args.fold.spe   =""
                 local str = builtin.foldfunc(args)
                 return str
               end
