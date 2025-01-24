@@ -5,6 +5,7 @@ return {
 
   {
     "williamboman/mason-lspconfig.nvim",
+    dependencies = { 'saghen/blink.cmp'},
     opts = function()
       -- Mappings.
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -45,14 +46,22 @@ return {
         debounce_text_changes = 150,
       }
 
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
+
       require'lspconfig'.verible.setup {
+        capabilities = capabilities,
         on_attach = on_attach,
         flags = lsp_flags,
         cmd = {"verible-verilog-ls",  "--rules=+line-length=length:160,-no-tabs,-no-trailing-spaces"},
         root_dir = function() return vim.uv.cwd() end
       }
-    end
 
+      require'lspconfig'.lua_ls.setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        flags = lsp_flags,
+      }
+    end
   }
 }
 

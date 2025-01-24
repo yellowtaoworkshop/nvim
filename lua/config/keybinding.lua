@@ -58,5 +58,24 @@ wk.add ({
       end,
       desc = "Open the Nvim Tree"
     }
-  }
+  },
+
+  -- TODO comments
+  {
+    { "<leader>d", group = "TODO comments", desc = "TODO comments keybinding groups"},
+    {
+      "<leader>d]",
+      function()
+        require("todo-comments").jump_next({keywords = {"ERROR", "WARNING"}})
+      end,
+      desc = "Next error/warning todo comments"
+    },
+    {
+      "<leader>d[",
+      function()
+        require("todo-comments").jump_prev({keywords = {"ERROR", "WARNING"}})
+      end,
+      desc = "Previous error/warning todo comments"
+    }
+  },
 })
