@@ -5,7 +5,9 @@ return {
     version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
     -- install jsregexp (optional!).
     build = "make install_jsregexp",
-    opts = {}
+    opts = function()
+      require("luasnip.loaders.from_vscode").lazy_load('~/.local/share/nvim/lazy/friendly-snippets/snippets')
+    end
   },
 
   {
@@ -42,7 +44,7 @@ return {
         nerd_font_variant = 'mono'
       },
 
-      --snippets = { preset = 'luasnip'},
+      snippets = { preset = 'luasnip'},
 
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
