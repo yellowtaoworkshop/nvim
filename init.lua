@@ -7,4 +7,4 @@ require("config.lazy")
 
 require("config.keybinding")
 
-
+require("config.lsp")

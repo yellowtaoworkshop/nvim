@@ -13,15 +13,16 @@ return {
   {
     'saghen/blink.cmp',
     -- optional: provides snippets for the snippet source
+    -- build = '',
     dependencies = {
       {'rafamadriz/friendly-snippets'},
       { 'L3MON4D3/LuaSnip', version = 'v2.*' },
     },
 
     -- use a release tag to download pre-built binaries
-    version = '*',
+    -- version = '1.*',
     -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-    -- build = 'cargo build --release',
+    build = 'cargo build --release',
     -- If you use nix, you can build from source using latest nightly rust with:
     -- build = 'nix run .#build-plugin',
 
@@ -35,32 +36,48 @@ return {
       keymap = { preset = 'default' },
 
       appearance = {
-        -- Sets the fallback highlight groups to nvim-cmp's highlight groups
-        -- Useful for when your theme doesn't support blink.cmp
-        -- Will be removed in a future release
-        use_nvim_cmp_as_default = true,
         -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
         nerd_font_variant = 'mono'
       },
 
-      snippets = { preset = 'luasnip'},
+      snippets = { preset = 'luasnip'  },
 
-      -- Default list of enabled providers defined so that you can extend it
-      -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
-        cmdline = {},
-        --cmdline = function()
-        --  local type = vim.fn.getcmdtype()
-        --  -- Search forward and backward
-        --  if type == '/' or type == '?' then return { 'buffer' } end
-        --  -- Commands
-        --  if type == ':' or type == '@' then return { 'cmdline' } end
-        --  return {}
-        --end,
+        default = { 'lsp', 'path', 'snippets', "buffer" },
       },
+
+      completion = {
+        ghost_text = {
+          enabled = true,
+        },
+        documentation = {
+          auto_show = true,
+          auto_show_delays = 500,
+        },
+        menu = {
+          auto_show = true, -- only show menu on manual <C-space>
+          -- nvim-cmp style menu
+          draw = {
+            columns = {
+              { "label", "label_description", gap = 1 },
+              { "kind_icon", "kind" }
+            },
+          }
+        },
+        -- 'prefix' will fuzzy match on the text before the cursor
+        -- 'full' will fuzzy match on the text before _and_ after the cursor
+        -- example: 'foo_|_bar' will match 'foo_' for 'prefix' and 'foo__bar' for 'full'lw
+        keyword = {
+          range = 'full',
+        },
+        accept = {
+          auto_brackets = {enabled = false},
+        },
+        list = { selection = { preselect = false, auto_insert = true } },
+      }
     },
     opts_extend = { "sources.default" }
   },
 }
+

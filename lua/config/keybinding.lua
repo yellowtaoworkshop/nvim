@@ -14,25 +14,47 @@ wk.add ({
     {
       "<leader>bl", 
       function()
-        require('buffer_manager.ui').toggle_quick_menu()
+        --require('buffer_manager.ui').toggle_quick_menu()
+        require('fzf-lua').buffers();
       end, 
       desc = "List all opened buffers"
     },
+    --{
+    --  "<leader>bn",
+    --  function()
+    --    require('buffer_manager.ui').nav_next()
+    --  end, 
+    --  desc = "Move to next buffer"
+    --    
+    --},
+    --{
+    --  "<leader>bp",
+    --  function()
+    --    require('buffer_manager.ui').nav_prev()
+    --  end, 
+    --  desc = "Move to previuos buffer"
+    --    
+    --}
+  },
+
+  {
+    { "<leader>f", group = "Files", desc = "Keybinding for the File operation" },
     {
-      "<leader>bn",
+      "<leader>fwf", 
       function()
-        require('buffer_manager.ui').nav_next()
-      end, 
-      desc = "Move to next buffer"
-        
+        cwd = os.getenv("WA")
+        require('fzf-lua').files({cwd = cwd});
+      end,
+      desc = "Find a file in the current work directry"
     },
     {
-      "<leader>bp",
+      "<leader>fcp", 
       function()
-        require('buffer_manager.ui').nav_prev()
-      end, 
-      desc = "Move to previuos buffer"
-        
+        local file_path = vim.api.nvim_buf_get_name(0)
+        vim.print("Coping the file path:" .. file_path .. "into the system clipborad")
+        vim.cmd('let @+ =expand("%:p")')
+      end,
+      desc = "Copy current full path of current buffer"
     }
   },
 

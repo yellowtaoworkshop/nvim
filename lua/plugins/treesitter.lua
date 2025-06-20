@@ -49,6 +49,14 @@ return {
      "nvim-treesitter/nvim-treesitter-textobjects",
      event = "VeryLazy",
      enabled = true,
+   },
+
+   {
+     'echasnovski/mini.ai',
+     version = '*',
+     opts = {}
    }
+
+
 }
 

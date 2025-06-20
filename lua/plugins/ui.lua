@@ -242,6 +242,20 @@ return {
       }
     end
   },
+
+  --- lualine
+  {
+    'AndreM222/copilot-lualine',
+  },
+
+  {
+    'nvim-lualine/lualine.nvim',
+    opts = {
+      sections = {
+        lualine_x = { 'copilot' ,'encoding', 'fileformat', 'filetype' }, 
+      },
+    },
+  }
 }
 
 

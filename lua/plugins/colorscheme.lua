@@ -14,22 +14,23 @@ return {
     end 
   },
 
-  --{
-  --  "catppuccin/nvim", 
-  --  name = "catppuccin", 
-  --  enabled = false,
-  --  priority = 1000,
-  --  opts = function()
-  --    vim.opt.background = "dark"
-  --    local opts = {
-  --      flavour = "auto",
-  --      backgroud = {
-  --        light = "latte",
-  --        darl  = "mocha"
-  --      }
-  --    }
-  --    vim.cmd.colorscheme("catppuccin")
-  --    return opts
-  --  end
-  --}
+  {
+    "catppuccin/nvim", 
+    name = "catppuccin", 
+    lazy = false,
+    priority = 1000,
+    enabled = false,
+    opts = function()
+      vim.opt.background = "dark"
+      local opts = {
+        flavour = "mocchiato",
+        backgroud = {
+          light = "latte",
+          dark  = "frappe"
+        },
+      }
+      vim.cmd.colorscheme("catppuccin")
+      return opts
+    end
+  }
 }
