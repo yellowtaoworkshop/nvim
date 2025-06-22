@@ -14,15 +14,15 @@ return {
     'saghen/blink.cmp',
     -- optional: provides snippets for the snippet source
     -- build = '',
+    build = 'cargo build --release',
+    -- use a release tag to download pre-built binaries
+    -- version = '1.*',
     dependencies = {
       {'rafamadriz/friendly-snippets'},
       { 'L3MON4D3/LuaSnip', version = 'v2.*' },
     },
 
-    -- use a release tag to download pre-built binaries
-    -- version = '1.*',
     -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-    build = 'cargo build --release',
     -- If you use nix, you can build from source using latest nightly rust with:
     -- build = 'nix run .#build-plugin',
 
@@ -53,7 +53,7 @@ return {
         },
         documentation = {
           auto_show = true,
-          auto_show_delays = 500,
+          auto_show_delay_ms = 500,
         },
         menu = {
           auto_show = true, -- only show menu on manual <C-space>
