@@ -51,7 +51,7 @@ wk.add ({
       "<leader>fcp", 
       function()
         local file_path = vim.api.nvim_buf_get_name(0)
-        vim.print("Coping the file path:" .. file_path .. "into the system clipborad")
+        vim.print("Coping the file path: " .. file_path .. " into the system clipborad")
         vim.cmd('let @+ =expand("%:p")')
       end,
       desc = "Copy current full path of current buffer"

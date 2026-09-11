@@ -2,7 +2,7 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_nerwwPlugin = 1
 
-local indent = 2
+local indent = 4
 
 vim.opt.shiftwidth  =indent
 vim.opt.tabstop     = indent
@@ -21,3 +21,11 @@ vim.opt.termguicolors = true
 -- leader key setting
 vim.g.mapleader       = ","
 vim.g.maplocalleader  = "\\"
+
+-- TAGS 
+
+-- clipbord setting
+local is_in_tmux = os.getenv("TMUX")
+if is_in_tmux ~= nil then 
+  vim.g.clipboard       = "tmux"
+end

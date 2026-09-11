@@ -1,14 +1,16 @@
---local lspconfutil = require 'lspconfig/util'
---local root_pattern = lspconfutil.root_pattern("veridian.yml", ".git", "bootenv")
-vim.lsp.config["veridian"] = {
-  cmd = { 'veridian' },
-  filetypes = { 'systemverilog', 'verilog' },
-  root_markers = { '.git', 'bootenv' },
-  --root_dir = function(fname)
-  --  local filename = lspconfutil.path.is_absolute(fname) and fname or lspconfutil.path.join(vim.loop.cwd(), fname)
-  --  return root_pattern(filename) or lspconfutil.path.dirname(filename)
-  --end
-}
+local function verible_root_dir(bufnr, on_dir)
+  local root = vim.fs.root(bufnr, { '.git', 'verible.filelist', '.svls.toml' })
+  if root == nil then
+    local bufname = vim.api.nvim_buf_get_name(bufnr)
+    if bufname == '' then
+      root = vim.uv.cwd()
+    else
+      root = vim.fs.dirname(bufname)
+    end
+  end
+
+  on_dir(root)
+end
 
 vim.lsp.config['luals'] = {
   -- Command and arguments to start the server.
@@ -33,5 +35,11 @@ vim.lsp.config['luals'] = {
   }
 }
 
+vim.lsp.config['verible'] = {
+  cmd = { 'verible-verilog-ls' },
+  filetypes = { 'systemverilog', 'verilog' },
+  root_dir = verible_root_dir,
+}
+
 vim.lsp.enable('luals')
-vim.lsp.enable('veridian')
+vim.lsp.enable('verible')
